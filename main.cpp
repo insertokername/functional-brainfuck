@@ -84,7 +84,7 @@ void evalString(std::string& input){
     }
 }
 
-void evalFile(std::string& path){
+void evalFile(char path[]){
         
     std::ifstream inputFile(path);
     
@@ -97,20 +97,29 @@ void evalFile(std::string& path){
                        (std::istreambuf_iterator<char>()    ) );
 
     evalString(input);
+    exit(0);
+}
+
+void startInterpretor(){
+    std::string input;
+    while(true){
+        std::cin>>input;
+        evalString(input);
+    }
 }
 
 int main(int argc, char* argv[]){
+    for(int i=1;i<argc;i++){
+        if(argv[i]=="-f"){
+            if(i+1==argc){
+                std::cerr<<"No file path";
+                exit(1);
+            }
+            ++i;
+            evalFile(argv[i]);
+        }
+        else if(argv[i]=="-i"){
 
-    
-
-    if(argc==3&&(argv[2]=="-f"||argv[2]=="-F")){
-
-    }
-    else{
-        std::string input;
-        while(true){
-            std::cin>>input;
-            evalString(input);
         }
     }
 }
