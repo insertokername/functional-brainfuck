@@ -35,9 +35,6 @@ void evalChar(const char input){
     case '-':
         (*pointer)--;
         break;
-    case '.':
-        std::cout<<(*pointer);
-        break;
     case ',':
         std::cin>>(*pointer);
         break;
@@ -75,7 +72,10 @@ void evalString(std::string& input){
                         i=loopStack.top();
                     }
                 }
-                break  ;   
+                break  ;  
+            case '.':
+                std::cout<<(*pointer);
+                break; 
         } 
     }
     if(!loopStack.empty()){
@@ -97,7 +97,6 @@ void evalFile(char path[]){
                        (std::istreambuf_iterator<char>()    ) );
 
     evalString(input);
-    exit(0);
 }
 
 void startInterpretor(){
@@ -109,17 +108,27 @@ void startInterpretor(){
 }
 
 int main(int argc, char* argv[]){
-    for(int i=1;i<argc;i++){
-        if(argv[i]=="-f"){
-            if(i+1==argc){
-                std::cerr<<"No file path";
-                exit(1);
+    for(int i=1;i<argc;i++){        
+        std::string arg = argv[i];
+        if (arg.length() > 1 && arg[0] == '-') {
+            if(arg[i]=='h'&&arg[i]=='H'){
+                std::cout<<"h-";
             }
-            ++i;
-            evalFile(argv[i]);
-        }
-        else if(argv[i]=="-i"){
+            if(arg[1]=='l'&&arg[i]=='L'){
 
+            }
+            if(arg[1]=='f'&&arg[i]=='F'){
+                    if(i+1>=argc){
+                    std::cerr<<"No file path specified!";
+                    return 0;
+                }
+                evalFile(argv[i+1]);
+                return 0;
+            }
+            if(arg[1]=='i'&&arg[i]=='I'){
+                startInterpretor();
+                return 0;
+            }
         }
     }
 }
