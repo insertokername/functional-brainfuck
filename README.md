@@ -10,16 +10,27 @@ basically just a brainfuck interpreter but has functions implemented
 * `,` read a byte
 * `.` print a byte
 
-and a new symbol:
+and the new symbols:
 
 * `q` quits out of the command line/file
+* `|` function definition limiter
+* `=` function call limiter
 
 
+function syntax:
 
-function defintion syntax:
+    |{function name}|{function body}|    deffinition 
+    ={function name}=                    function call    
 
-    |{function name}|{function body}|
 
 for example:
 
-    |func|    
+    |func|+[.+]|
+    =func=
+
+output:
+
+    
+    
+    
+    123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}   ~�������������������������������������������������������������������������������������������������������������������   �������������    
