@@ -2,6 +2,8 @@
 #include <fstream>
 #include <string>
 #include <stack>
+#include <unordered_map>
+#include <algorithm>
 #include <cstdlib>
 
 constexpr std::size_t SIZE = 30000;
@@ -10,9 +12,13 @@ uint8_t* pointer=arr;
 int skipping_loop=0;
 bool in_line=0;
 std::stack<std::size_t> loop_stack;
+std::unordered_map<std::string,int> function_map;
 
 void evalChar(const char input){
     switch (input){
+    case '`':
+        
+        break;
     case '>':
         if(pointer-arr==SIZE-1){
             pointer=arr;
@@ -42,7 +48,7 @@ void evalChar(const char input){
         exit(0);
         break;
     case '.':
-        std::cout<<(*pointer)<<'\n';
+        std::cout<<(*pointer);
         break; 
     }
 }
@@ -53,8 +59,8 @@ void evalString(std::string& input){
             evalChar(input[i]);
         }
 
-        switch (input[i]){ //i'm splitting the cases because i need to check if i should stop skipping characters 
-            case '[':      //still to lazy to think of a better way to implement loops sry
+        switch (input[i]){ //TODO make a version of paranteses skipping with stl so u dont have to use skipping_loop state
+            case '[':      
                 loop_stack.push(i);
                 if((*pointer)==0){
                     skipping_loop++;
@@ -90,13 +96,12 @@ void evalString(std::string& input){
         } 
     }
     if(!loop_stack.empty()){
-        std::cerr<<"Unclosed paranthases!\n";
+        std::cerr<<"Unclosed paranthases (stack not empty)!\n";
         exit(1);
     }
 }
 
 void evalFile(char path[]){
-        
     std::ifstream inputFile(path);
     
     if (!inputFile.is_open()) {
@@ -106,6 +111,7 @@ void evalFile(char path[]){
     
     std::string input( (std::istreambuf_iterator<char>(inputFile) ),
                        (std::istreambuf_iterator<char>()    ) );
+
 
     evalString(input);
 }
