@@ -30,7 +30,9 @@ for example:
 
 output:
 
-    
-    
-    
+
+
+
     123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}   ~�������������������������������������������������������������������������������������������������������������������   �������������    
+
+(first few characters are excluded cuz they dont show up on github (trust me they are there))
