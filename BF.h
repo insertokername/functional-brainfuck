@@ -1,7 +1,6 @@
 #ifndef BF_FUNCTION_FILE
 #define BF_FUNCTION_FILE
 
-
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -12,7 +11,7 @@
 #include <cstdlib>
 
 namespace BF{
-    bool in_line;
+    extern bool in_line;
     void evalChar(const char input);
     void evalString(std::string& input);
     void evalFile(char path[]);

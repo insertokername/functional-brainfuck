@@ -1,11 +1,3 @@
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <sstream>
-#include <stack>
-#include <unordered_map>
-#include <algorithm>
-#include <cstdlib>
 #include "BF.h"
 
 int main(int argc, char* argv[]){

@@ -1,12 +1,4 @@
 #include "BF.h"
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <sstream>
-#include <stack>
-#include <unordered_map>
-#include <algorithm>
-#include <cstdlib>
 
 namespace BF
 {
@@ -18,7 +10,7 @@ namespace BF
 	std::stack<std::size_t> loop_stack;
 	std::unordered_map<std::string,std::string> function_map;
 
-	void BF::evalChar(const char input){
+	void evalChar(const char input){
 		switch (input){
 		case '>':
 			if(pointer-arr==SIZE-1){
@@ -54,7 +46,7 @@ namespace BF
 		}
 	}
 
-	void BF::evalString(std::string& input){
+	void evalString(std::string& input){
 		for(std::size_t i=0;i<input.size();i++){
 			if(!skipping_loop){
 				evalChar(input[i]);
@@ -128,7 +120,7 @@ namespace BF
 
 				}
 				case ',':{
-					if(in_line){
+					if(BF::in_line){
 						if(i+1<input.size()){
 						i++;
 						(*pointer)=input[i];
