@@ -66,9 +66,9 @@ namespace BF
 
 					name=input.substr(start,end-start);
 
-					std::clog<<"starting positiop of subst "<<start<<' '<<end<<'\n';
+					//std::clog<<"starting positiop of subst "<<start<<' '<<end<<'\n';
 
-					std::clog<<"running function "<<name<<" "<<function_map[name]<<std::endl;
+					//std::clog<<"running function "<<name<<" "<<function_map[name]<<std::endl;
 					evalString(function_map[name]);
 					i=end;
 					break;
@@ -92,7 +92,7 @@ namespace BF
 						exit(1);
 					}
 					function_map[name]=body;
-					std::clog<<"saved "<<name<<" as body "<<function_map[name]<<std::endl;
+					//std::clog<<"saved "<<name<<" as body "<<function_map[name]<<std::endl;
 					i=end;
 					break;
 				}
