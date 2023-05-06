@@ -10,6 +10,10 @@ namespace BF
 	std::stack<std::size_t> loop_stack;
 	std::unordered_map<std::string,std::string> function_map;
 
+	void init_line(bool _in_line){
+		in_line=_in_line;
+	}
+
 	void evalChar(const char input){
 		switch (input){
 		case '>':

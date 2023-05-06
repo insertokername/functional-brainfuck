@@ -13,11 +13,11 @@ int main(int argc, char* argv[]){
             }
             if((arg[1]=='E')&&force_in_line==0){
                 force_in_line=1;
-                BF::in_line=1;
+                BF::init_line(1);
             }
             if((arg[1]=='D')&&force_in_line==0){
                 force_in_line=1;
-                BF::in_line=0;
+                BF::init_line(0);
             }
             if(arg[1]=='F'){
                     if(i+1>=argc){
@@ -25,14 +25,14 @@ int main(int argc, char* argv[]){
                     return 0;
                 }
                 if(!force_in_line){
-                    BF::in_line=0;
+                    BF::init_line(0);
                 }
                 BF::evalFile(argv[i+1]);
                 return 0;
             }
             if(arg[1]=='C'){
                 if(!force_in_line){
-                    BF::in_line=1;
+                    BF::init_line(1);
                 }
                 BF::startInterpretor();
                 return 0;

@@ -11,7 +11,7 @@
 #include <cstdlib>
 
 namespace BF{
-    extern bool in_line;
+    void init_line(bool _in_line);
     void evalChar(const char input);
     void evalString(std::string& input);
     void evalFile(char path[]);
