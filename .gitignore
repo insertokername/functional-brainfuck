@@ -1,4 +1,7 @@
 *.out
+*.o
 output
 test.cpp
 code.txt
+BF
+.editorconfig
