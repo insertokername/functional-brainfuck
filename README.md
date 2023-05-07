@@ -37,9 +37,8 @@ output:
 
 (first few characters are excluded cuz they dont show up on github (trust me they are there))
 
-Instalation for linux is just downloading the repo files and compiling them with g++ or whatever you want, i am using defaul compile options:
+Instalation for linux:
     
-    g++ main.cpp -o bf
 
 roadmap:
 maybe i'll add multi file support
