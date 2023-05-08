@@ -38,7 +38,13 @@ output:
 (first few characters are excluded cuz they dont show up on github (trust me they are there))
 
 Instalation for linux:
+I made a Makefile with a command called "install" and anotherone "install-deb".
+"install-deb" moves the compiled file into local bin folders (aka u can type BF like any other command (for example python) and it will open the interpretor) and "install" just installs it localy to the folder in which you are located so you have to run the file like "./BF"
     
+i recomend:  
+  
+    make install-deb
+
 
 roadmap:
 maybe i'll add multi file support
