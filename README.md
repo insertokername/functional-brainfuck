@@ -13,20 +13,20 @@ basically just a brainfuck interpreter but has functions implemented
 and the new symbols:
 
 * `q` quits out of the command line/file
-* `|` function definition limiter
-* `=` function call limiter
+* `=` function definition limiter
+* `|` function call limiter
 
 
 function syntax:
 
-    |{function name}|{function body}|    deffinition 
-    ={function name}=                    function call    
+    ={function name}={function body}=    deffinition 
+    |{function name}|                    function call    
 
 
 for example:
 
-    |func|+[.+]|
-    =func=
+    =func=+[.+]=
+    |func|
 
 output:
 
