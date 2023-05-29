@@ -1,6 +1,6 @@
 # functional-brainfuck
 
-basically just a brainfuck interpreter but has functions implemented (BFB for short)
+basically just a brainfuck interpreter but has functions implemented (FBF for short)
 
 symbols:
 
@@ -29,13 +29,13 @@ include syntax:
     
     #{file-name}#{in_line_input *go to faq section to understand what that means}#
 
-for example we we'll make a file called `include_me.bfb` with the following contents:
+for example we we'll make a file called `include_me.fbf` with the following contents:
     
     =func=+[.+]=
 
 and we run in console:
     
-    #include_me.bfb#0#
+    #include_me.fbf#0#
     |func|
 
 output:
@@ -45,9 +45,9 @@ output:
 ---
 **important:**
 
-**BFB will automatically try to run a function named "main" [THIS ONLY HAPPENS WHEN RUNNING A FILE] if its not found it will throw an error**
+**FBF will automatically try to run a function named "main" [THIS ONLY HAPPENS WHEN RUNNING A FILE IT WILL NOT HAPPEN WHEN RUNNING FORM CONSOLE] if its not found it will throw an error**
 
-**BFB will run in_line on console and will not run with in_line on file read mode**
+**FBF will run with in_line turned on while in console and will run with in_line turned of while in file read mode**
 
 ---
 
@@ -55,7 +55,7 @@ output:
 
 Instalation for linux:
 I made a Makefile with a command called "all" and anotherone "install-linux".
-"install-linux" moves the compiled file into local bin folders (aka u can type BF like any other command (for example python) and it will open the interpretor) and "all" just installs it localy to the folder in which you are located so you have to run the file like "./BF" while being in the project folder in a command line
+"install-linux" moves the compiled file into local bin folders (aka u can type FBF like any other command (for example python) and it will open the interpretor) and "all" just installs it localy to the folder in which you are located so you have to run the file like "./FBF" while being in the project folder in a command line
 
 i recommend (for linux):
 
