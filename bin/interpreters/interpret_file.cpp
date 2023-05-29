@@ -20,7 +20,7 @@ void FBF::interpret_file(const std::string &path, bool in_line) {
 	location = FBF::find_parent(path);
 
 	if (path[0] != '/') {
-		location = (std::string)(std::filesystem::current_path()) + '/' + location;
+		location = std::string(std::filesystem::current_path().u8string()) + '/' + location;
 	}
 
 	FBF::eval_string(input, pointer, arr, function_map, location, in_line);
