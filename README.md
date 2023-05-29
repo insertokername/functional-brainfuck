@@ -27,7 +27,7 @@ function syntax:
 
 include syntax:
     
-    #{file-name#{in_line_input *go to faq section to understand what that means)}#
+    #{file-name}#{in_line_input *go to faq section to understand what that means}#
 
 for example we we'll make a file called `include_me.bfb` with the following contents:
     
