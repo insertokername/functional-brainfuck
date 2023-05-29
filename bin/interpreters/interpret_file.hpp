@@ -4,11 +4,13 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <filesystem>
+#include "../utils.hpp"
 #include "../eval/eval_string.hpp"
 
 
 namespace BF {
-	void interpret_file(char path[], bool in_line);
+	void interpret_file(const std::string &path, bool in_line);
 }
 
 #endif

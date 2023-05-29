@@ -1,0 +1,12 @@
+DONE - add an include statement - use #{name} 
+
+DONE - update makefile names and install location - change install to user folder and make installations more understandable
+
+explain in makefile what inline means
+
+update readme to exaplin includes and general update
+
+maybe later:
+	make a version of paranteses skipping with stl so u dont have to use skipping_loop state
+	setup wizzard for windows
+	dependencies: make? git? g++. 

@@ -9,6 +9,6 @@ void BF::interpret_console(bool in_line) {
 	while (true) {
 		std::cout << ">>>";
 		std::getline(std::cin, input);
-		BF::eval_string(input, pointer, arr, function_map, 1);
+		BF::eval_string(input, pointer, arr, function_map, std::filesystem::current_path(), in_line);
 	}
 }

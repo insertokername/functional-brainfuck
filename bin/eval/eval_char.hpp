@@ -7,6 +7,6 @@
 #include <iostream>
 
 namespace BF {
-	void evalChar(const char input, std::vector<uint8_t>::iterator& pointer, std::vector<uint8_t>& arr);
+	void eval_char(const char input, std::vector<uint8_t>::iterator &pointer, std::vector<uint8_t> &arr);
 }
 #endif
