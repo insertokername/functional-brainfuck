@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <iostream>
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
 
 	bool force_in_line = 0, in_line = 0;
 	for (int i = 1;i < argc;i++) {
@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
 				if (!force_in_line) {
 					in_line = 0;
 				}
-				BF::interpret_file(argv[i + 1], in_line);
+				FBF::interpret_file(argv[i + 1], in_line);
 				return 0;
 			}
 			else {
@@ -43,7 +43,7 @@ int main(int argc, char* argv[]) {
 	if (!force_in_line) {
 		in_line = 1;
 	}
-	BF::interpret_console(in_line);
+	FBF::interpret_console(in_line);
 	return 0;
 
 }

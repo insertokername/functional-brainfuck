@@ -1,21 +1,21 @@
 flags= -std=c++17 -Wall
-INSTALL_DIR= /usr/local/bin/BF
-all: BF
+INSTALL_DIR= /usr/local/bin/FBF
+all: FBF
 	@echo "\nInstalled brainfuck\n" 
 
 #install for deb(not sure if it works on other distros i just made this for my pc) and automatically moves it in 
 #the local bin folder for easy acces
-install-linux: BF
-	sudo install -m 755 BF $(INSTALL_DIR)
+install-linux: FBF
+	sudo install -m 755 FBF $(INSTALL_DIR)
 	@echo "\nInstalled brainfuck\n"
 
 uninstall-linux:
 	make clean
-	-rm -f BF
+	-rm -f FBF
 	sudo rm -f $(INSTALL_DIR)
 
-BF: utils.o eval_char.o eval_string.o interpret_file.o interpret_console.o main.o
-	g++ $(flags) utils.o eval_char.o eval_string.o interpret_console.o interpret_file.o main.o -o BF
+FBF: utils.o eval_char.o eval_string.o interpret_file.o interpret_console.o main.o
+	g++ $(flags) utils.o eval_char.o eval_string.o interpret_console.o interpret_file.o main.o -o FBF
 
 utils.o: bin/utils.cpp
 	g++ $(flags) -c bin/utils.cpp -o utils.o

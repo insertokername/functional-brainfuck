@@ -1,6 +1,6 @@
 #include "eval_string.hpp"
 
-void BF::eval_string(const std::string &input
+void FBF::eval_string(const std::string &input
 	, std::vector<uint8_t>::iterator &pointer
 	, std::vector<uint8_t> &arr
 	, std::unordered_map<std::string, std::string> &function_map
@@ -12,7 +12,7 @@ void BF::eval_string(const std::string &input
 
 	for (std::size_t i = 0;i < input.size();i++) {
 		if (!skipping_loop) {
-			BF::eval_char(input[i], pointer, arr);
+			FBF::eval_char(input[i], pointer, arr);
 		}
 		switch (input[i]) {
 			case '#': {
@@ -48,7 +48,7 @@ void BF::eval_string(const std::string &input
 
 				std::string input_file_text((std::istreambuf_iterator<char>(input_file)),
 					(std::istreambuf_iterator<char>()));
-				BF::eval_string(input_file_text, pointer, arr, function_map, location + "/" + BF::find_parent(name), std::stoi(body));
+				FBF::eval_string(input_file_text, pointer, arr, function_map, location + "/" + FBF::find_parent(name), std::stoi(body));
 				break;
 			}
 			case '|': {
@@ -61,7 +61,7 @@ void BF::eval_string(const std::string &input
 				}
 				name = input.substr(start, end - start);
 
-				BF::eval_string(function_map[name], pointer, arr, function_map, location, in_line);
+				FBF::eval_string(function_map[name], pointer, arr, function_map, location, in_line);
 				i = end;
 				break;
 			}

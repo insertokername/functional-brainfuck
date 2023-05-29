@@ -1,6 +1,6 @@
 #include "interpret_console.hpp"
 
-void BF::interpret_console(bool in_line) {
+void FBF::interpret_console(bool in_line) {
 	std::string input;
 	constexpr std::size_t SIZE = 30000;
 	std::vector<uint8_t> arr(SIZE);
@@ -9,6 +9,6 @@ void BF::interpret_console(bool in_line) {
 	while (true) {
 		std::cout << ">>>";
 		std::getline(std::cin, input);
-		BF::eval_string(input, pointer, arr, function_map, std::filesystem::current_path(), in_line);
+		FBF::eval_string(input, pointer, arr, function_map, std::filesystem::current_path(), in_line);
 	}
 }

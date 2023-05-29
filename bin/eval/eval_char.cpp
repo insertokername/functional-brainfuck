@@ -1,7 +1,7 @@
 
 #include "eval_char.hpp"
 
-void BF::eval_char(const char input, std::vector<uint8_t>::iterator &pointer, std::vector<uint8_t> &arr) {
+void FBF::eval_char(const char input, std::vector<uint8_t>::iterator &pointer, std::vector<uint8_t> &arr) {
 	switch (std::tolower(input)) {
 		case '>':
 			pointer++;
