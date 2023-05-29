@@ -10,3 +10,6 @@ maybe later:
 	make a version of paranteses skipping with stl so u dont have to use skipping_loop state
 	setup wizzard for windows
 	dependencies: make? git? g++. 
+	stl
+	function arguments? 
+	if statements?
