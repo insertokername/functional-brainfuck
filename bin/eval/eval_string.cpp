@@ -38,8 +38,6 @@ void FBF::eval_string(const std::string &input
 					exit(1);
 				}
 
-				std::clog << location << " location\n";
-
 				std::ifstream input_file(location + "/" + name);
 				if (!input_file.is_open()) {
 					std::cerr << "Failed to open " << name << "!" << std::endl;
