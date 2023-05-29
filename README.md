@@ -2,6 +2,8 @@
 
 basically just a brainfuck interpreter but has functions implemented (BFB for short)
 
+symbols:
+
 - `+` increment the current cell's value
 - `-` decrement the current cell's value
 - `<` move the cell pointer left
