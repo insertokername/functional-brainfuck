@@ -11,7 +11,7 @@
 #include "../utils.hpp"
 
 namespace FBF {
-	void eval_string(const std::string &input, std::vector<uint8_t>::iterator &pointer, std::vector<uint8_t> &arr, std::unordered_map<std::string, std::string> &function_map, std::string location, const bool in_line = 0);
+	void eval_string(const std::string &input, std::vector<uint8_t>::iterator &pointer, std::vector<uint8_t> &arr, std::unordered_map<std::string, std::string> &function_map, const std::string &location, const std::string &log_path, const bool in_line = 0);
 }
 
 #endif

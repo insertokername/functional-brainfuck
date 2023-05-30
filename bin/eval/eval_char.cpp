@@ -11,8 +11,9 @@ void FBF::eval_char(const char input, std::vector<uint8_t>::iterator &pointer, s
 			break;
 		case '<':
 			if (pointer == arr.begin()) {
-				pointer = arr.end() - 1;
+				pointer = arr.end();
 			}
+			pointer--;
 			break;
 		case '+':
 			(*pointer)++;

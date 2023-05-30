@@ -19,6 +19,7 @@ and the new symbols:
 - `=` function definition limiter
 - `|` function call limiter
 - `#` include limiter
+- `~` adds a newline and "---" to the log file
 
 function syntax:
 
@@ -46,7 +47,7 @@ output:
 
 **important:**
 
-**FBF will automatically try to run a function named "main" [THIS ONLY HAPPENS WHEN RUNNING A FILE IT WILL NOT HAPPEN WHEN RUNNING FORM CONSOLE] if its not found it will throw an error**
+**FBF will automatically try to run a function named "main" [THIS ONLY HAPPENS WHEN RUNNING A FILE IT WILL NOT HAPPEN WHEN RUNNING FORM CONSOLE] if its not found it will throw an error ANY GLOBAL CODE WILL BE EXECUTED BEFORE MAIN, EVEN CODE THAT IS UNDER MAIN DEFFINITION**
 
 **FBF will run with in_line turned on while in console and will run with in_line turned of while in file read mode**
 

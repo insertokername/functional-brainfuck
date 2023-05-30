@@ -6,9 +6,15 @@ void FBF::interpret_console(bool in_line) {
 	std::vector<uint8_t> arr(SIZE);
 	std::vector<uint8_t>::iterator pointer = arr.begin();
 	std::unordered_map<std::string, std::string> function_map;
+	std::ofstream log_file(std::filesystem::current_path().u8string() + "/console_log.fbf.log");
+	log_file << "";
+	log_file.close();
 	while (true) {
 		std::cout << ">>>";
-		std::getline(std::cin, input);
-		FBF::eval_string(input, pointer, arr, function_map, std::filesystem::current_path().u8string(), in_line);
+		while (input.empty()) {
+			std::getline(std::cin, input);
+		}
+		FBF::eval_string(input, pointer, arr, function_map, std::filesystem::current_path().u8string(), std::filesystem::current_path().u8string() + "/console_log.fbf.log", in_line);
+		input = "";
 	}
 }

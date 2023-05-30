@@ -10,6 +10,11 @@ maybe later:
 	make a version of paranteses skipping with stl so u dont have to use skipping_loop state
 	setup wizzard for windows
 	dependencies: make? git? g++. 
+	
 	stl
+	-variables: their position (pointer) will be stored in the first bytes of the memory relative to the end of the file so if the byte array is [1, 0, 0, .... 50] then if you go minus one cell from the begining you will reach the variables
+		issues:
+			variable size limits
+			pointer size limits
 	function arguments? 
 	if statements?

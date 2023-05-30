@@ -21,15 +21,17 @@ void FBF::interpret_file(const std::string &path, bool in_line) {
 
 	location = std::string(std::filesystem::current_path().u8string()) + (path[0] == '/' ? "" : "/") + location;
 
-	FBF::eval_string(input, pointer, arr, function_map, location, in_line);
+	std::ofstream log_file(location + "file_log.fbf.log");
+	log_file << "";
+	log_file.close();
+
+	FBF::eval_string(input, pointer, arr, function_map, location, location + "file_log.fbf.log", in_line);
 
 	if (function_map["main"] == "") {
 		std::cerr << "\nEmpty or no main definition!\n" << std::endl;
 	}
 	else {
-		FBF::eval_string(function_map["main"], pointer, arr, function_map, location, in_line);
+		FBF::eval_string(function_map["main"], pointer, arr, function_map, location, location + "file_log.fbf.log", in_line);
 	}
-
-	std::cout << '\n';
 	exit(0);
 }

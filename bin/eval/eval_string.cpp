@@ -4,11 +4,14 @@ void FBF::eval_string(const std::string &input
 	, std::vector<uint8_t>::iterator &pointer
 	, std::vector<uint8_t> &arr
 	, std::unordered_map<std::string, std::string> &function_map
-	, std::string location
-	, bool in_line) {
-
+	, const std::string &location
+	, const std::string &log_path
+	, bool in_line
+) {
 	std::stack<std::size_t> loop_stack;
 	int16_t skipping_loop = 0;
+	std::ofstream log_file(log_path, std::ios::app);
+
 
 	for (std::size_t i = 0;i < input.size();i++) {
 		if (!skipping_loop) {
@@ -16,74 +19,89 @@ void FBF::eval_string(const std::string &input
 		}
 		switch (input[i]) {
 			case '#': {
-				std::string name, body;
-				std::size_t start = i + 1, end;
+				if (!skipping_loop) {
+					std::string name, body;
+					std::size_t start = i + 1, end;
 
-				while ((end = input.find("#", start)) != std::string::npos) {
-					if (name.empty()) {
-						// First occurrence of #
-						name = input.substr(start, end - start);
+					while ((end = input.find("#", start)) != std::string::npos) {
+						if (name.empty()) {
+							// First occurrence of #
+							name = input.substr(start, end - start);
+						}
+						else {
+							// Second occurrence of #
+							body = input.substr(start, end - start);
+							break;
+						}
+						start = end + 1;
 					}
-					else {
-						// Second occurrence of #
-						body = input.substr(start, end - start);
-						break;
+
+					i = end;
+					if (name.empty() || body.empty()) {
+						std::cerr << "Unclosed include statement!" << std::endl;
+						exit(1);
 					}
-					start = end + 1;
-				}
 
-				i = end;
-				if (name.empty() || body.empty()) {
-					std::cerr << "Unclosed include statement!" << std::endl;
-					exit(1);
-				}
+					std::ifstream input_file(location + "/" + name);
+					if (!input_file.is_open()) {
+						std::cerr << "Failed to open " << name << "!" << std::endl;
+						exit(1);
+					}
 
-				std::ifstream input_file(location + "/" + name);
-				if (!input_file.is_open()) {
-					std::cerr << "Failed to open " << name << "!" << std::endl;
-					exit(1);
+					std::string input_file_text((std::istreambuf_iterator<char>(input_file)),
+						(std::istreambuf_iterator<char>()));
+					FBF::eval_string(input_file_text, pointer, arr, function_map, location + "/" + FBF::find_parent(name), log_path, std::stoi(body));
 				}
-
-				std::string input_file_text((std::istreambuf_iterator<char>(input_file)),
-					(std::istreambuf_iterator<char>()));
-				FBF::eval_string(input_file_text, pointer, arr, function_map, location + "/" + FBF::find_parent(name), std::stoi(body));
 				break;
 			}
 			case '|': {
-				std::string name;
-				std::size_t start = i + 1, end = input.find("|", start);
+				if (!skipping_loop) {
+					std::string name;
+					std::size_t start = i + 1, end = input.find("|", start);
 
-				if (end == std::string::npos) {
-					std::cerr << "Unclosed function call!" << std::endl;
-					exit(1);
+					if (end == std::string::npos) {
+						std::cerr << "Unclosed function call!" << std::endl;
+						exit(1);
+					}
+					name = input.substr(start, end - start);
+
+					FBF::eval_string(function_map[name], pointer, arr, function_map, location, log_path, in_line);
+					i = end;
 				}
-				name = input.substr(start, end - start);
-
-				FBF::eval_string(function_map[name], pointer, arr, function_map, location, in_line);
-				i = end;
 				break;
 			}
 			case '=': {
-				std::string name, body;
-				std::size_t start = i + 1, end;
+				if (!skipping_loop) {
+					std::string name, body;
+					std::size_t start = i + 1, end;
 
-				while ((end = input.find("=", start)) != std::string::npos) {
-					if (name.empty()) {
-						// First occurrence of =
-						name = input.substr(start, end - start);
+					while ((end = input.find("=", start)) != std::string::npos) {
+						if (name.empty()) {
+							// First occurrence of =
+							name = input.substr(start, end - start);
+						}
+						else {
+							// Second occurrence of =
+							body = input.substr(start, end - start);
+							break;
+						}
+						start = end + 1;
 					}
-					else {
-						// Second occurrence of =
-						body = input.substr(start, end - start);
-						break;
+					if (name.empty() || body.empty()) {
+						std::cerr << "Unclosed function definition!" << std::endl;
+						exit(1);
 					}
-					start = end + 1;
+					function_map[name] = body;
+					i = end;
 				}
-				if (name.empty() || body.empty()) {
-					std::cerr << "Unclosed function definition!" << std::endl;
+				break;
+			}
+			case '/': {
+				std::size_t end = input.find("/", i + 1);
+				if (end == std::string::npos) {
+					std::cerr << "Unclosed comment!" << std::endl;
 					exit(1);
 				}
-				function_map[name] = body;
 				i = end;
 				break;
 			}
@@ -93,7 +111,6 @@ void FBF::eval_string(const std::string &input
 					skipping_loop++;
 				}
 				break;
-
 			}
 			case ']': {
 				if (skipping_loop) {
@@ -111,20 +128,27 @@ void FBF::eval_string(const std::string &input
 				break;
 			}
 			case ',': {
-				if (in_line) {
-					if (i + 1 < input.size()) {
-						i++;
-						(*pointer) = input[i];
-					}
-					else {
-						std::cin >> (*pointer);
-					}
+				if (skipping_loop) {
+					break;
+				}
+
+				if (in_line && i + 1 < input.size()) {
+					i++;
+					(*pointer) = input[i];
 				}
 				else {
-					std::cin >> (*pointer);
+					char in;
+					std::cin.get(in);
+					*pointer = in;
 				}
 				break;
 			}
+		}
+		if (input[i] == '~' && !skipping_loop) {
+			log_file << "---" << std::endl;
+		}
+		else {
+			log_file << "pointer position: " << pointer - arr.begin() << " pointer value: " << (int)(*pointer) << " (" << (*pointer) << ")" << " skipping loop: " << skipping_loop << " command " << input[i] << std::endl;
 		}
 	}
 	if (!loop_stack.empty()) {

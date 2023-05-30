@@ -3,8 +3,12 @@ INSTALL_DIR= /usr/local/bin/FBF
 all: FBF
 	@echo "\nInstalled brainfuck\n" 
 
-#install for deb(not sure if it works on other distros i just made this for my pc) and automatically moves it in 
-#the local bin folder for easy acces
+.PHONY: uninstall-local
+uninstall-local:
+	make clean
+	-rm -f FBF.exe
+
+
 install-linux: FBF
 	sudo install -m 755 FBF $(INSTALL_DIR)
 	@echo "\nInstalled brainfuck\n"
