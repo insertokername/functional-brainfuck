@@ -75,7 +75,7 @@ then you can just open up a terminal and type "FBF -h"
 
 will be making a windows tutorial in the future...
 
-## faq
+## faq:
 
 q:**what does "in_line_reading" or "in_line" mean?**
 
