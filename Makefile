@@ -43,3 +43,4 @@ main.o: bin/main.cpp
 .PHONY: clean
 clean:
 	-rm -f *.o
+	find . -type f -name "*.log" -delete

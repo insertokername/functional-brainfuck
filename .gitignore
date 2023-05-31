@@ -8,3 +8,4 @@ FBF
 .editorconfig
 file_log.fbf.log
 *.fbf.log
+main_test.fbf
