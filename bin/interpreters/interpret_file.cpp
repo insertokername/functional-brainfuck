@@ -25,13 +25,13 @@ void FBF::interpret_file(const std::string &path, bool in_line) {
 	log_file << "";
 	log_file.close();
 
-	FBF::eval_string(input, pointer, arr, function_map, location, location + "file_log.fbf.log", in_line);
+	FBF::eval_string(input, pointer, arr, function_map, location, location + "/file_log.fbf.log", in_line);
 
 	if (function_map["main"] == "") {
 		std::cerr << "\nEmpty or no main definition!\n" << std::endl;
 	}
 	else {
-		FBF::eval_string(function_map["main"], pointer, arr, function_map, location, location + "file_log.fbf.log", in_line);
+		FBF::eval_string(function_map["main"], pointer, arr, function_map, location, location + "/file_log.fbf.log", in_line);
 	}
 	exit(0);
 }

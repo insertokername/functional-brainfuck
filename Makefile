@@ -6,6 +6,7 @@ all: FBF
 .PHONY: uninstall-local
 uninstall-local:
 	make clean
+	-rm -f FBF
 	-rm -f FBF.exe
 
 

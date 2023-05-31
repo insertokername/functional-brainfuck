@@ -23,7 +23,7 @@ and the new symbols:
 
 function syntax:
 
-    ={function name}={function body}=    deffinition
+    ={function name}={function body}=    definition
     |{function name}|                    function call
 
 include syntax:
@@ -43,27 +43,37 @@ output:
 
     123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}   ~�������������������������������������������������������������������������������������������������������������������   �������������
 
+(first few characters are excluded cuz they dont show up on github (trust me they are there))
+
 ---
 
 **important:**
 
-**FBF will automatically try to run a function named "main" [THIS ONLY HAPPENS WHEN RUNNING A FILE IT WILL NOT HAPPEN WHEN RUNNING FORM CONSOLE] if its not found it will throw an error ANY GLOBAL CODE WILL BE EXECUTED BEFORE MAIN, EVEN CODE THAT IS UNDER MAIN DEFFINITION**
+**FBF will automatically try to run a function named "main" (THIS ONLY HAPPENS WHEN RUNNING A FILE IT WILL NOT HAPPEN WHEN RUNNING FORM CONSOLE) if its not found it will throw an error ANY GLOBAL CODE WILL BE EXECUTED BEFORE MAIN, EVEN CODE THAT IS UNDER MAIN DEFINITION**
 
 **FBF will run with in_line turned on while in console and will run with in_line turned of while in file read mode**
 
+**any function definition of an allready defined function will override the old function definition that includes functions defined whitin an included file**
+
 ---
 
-(first few characters are excluded cuz they dont show up on github (trust me they are there))
+## prerequisites:
 
-Instalation for linux:
-I made a Makefile with a command called "all" and anotherone "install-linux".
-"install-linux" moves the compiled file into local bin folders (aka u can type FBF like any other command (for example python) and it will open the interpretor) and "all" just installs it localy to the folder in which you are located so you have to run the file like "./FBF" while being in the project folder in a command line
+linux: git,make,g++
 
-i recommend (for linux):
+## instalation:
 
-    make install-linux
+linux(building the project):
 
-will be making a windows tool in the future...
+    sudo git clone https://github.com/insertokername/functional-brainfuck.git ~/functional-brainfuck
+
+    cd functional-brainfuck
+
+    sudo make install-linux
+
+then you can just open up a terminal and type "FBF -h"
+
+will be making a windows tutorial in the future...
 
 ## faq
 

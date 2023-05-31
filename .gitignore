@@ -7,4 +7,4 @@ FBF.exe
 FBF
 .editorconfig
 file_log.fbf.log
-console_log.fbf.log
+*.fbf.log

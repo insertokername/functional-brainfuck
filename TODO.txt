@@ -2,19 +2,49 @@ DONE - add an include statement - use #{name}
 
 DONE - update makefile names and install location - change install to user folder and make installations more understandable
 
-explain in makefile what inline means
+DONE - explain in makefile what inline means
 
-update readme to exaplin includes and general update
+DONE - update readme to exaplin includes and general update
+
+install guide for:
+	linux
+	windows
+
+dependencies: make? git? g++. 
+
+look into copy.sh websites:
+	http://copy.sh/v86/?profile=linux26
+	https://copy.sh/brainfuck/?file=https://copy.sh/brainfuck/prog/yapi.b
+
+IMPORTANT tools for printing the byte array and a bit of log refining
+
+algo for offsetting pointer by n bytes
+
+default include directories
 
 maybe later:
-	make a version of paranteses skipping with stl so u dont have to use skipping_loop state
-	setup wizzard for windows
-	dependencies: make? git? g++. 
+	optimization - make a version of paranteses skipping with stl so u dont have to use skipping_loop state 
 	
 	stl
+	
 	-variables: their position (pointer) will be stored in the first bytes of the memory relative to the end of the file so if the byte array is [1, 0, 0, .... 50] then if you go minus one cell from the begining you will reach the variables
+		
+		| - delimits the end / begining of the byte array eg: cell29.999 cell30.000 | cell1 cell2 ... (my byte array wraps) 
+		pointer format:
+			o-offset of the variable relative to the begining of the byte array
+			/-cell that must be 0
+			n- variable name of the pointer that must be accesed (all variables will be numbers and the name of the variable is the offset it requires basically)
+			=> / n o o o o ...
+			we are using / because the only algo i found for moving pointers by a number of steps basically shifts every byte to the left one by one
+			 so we need one buffer so that stuff doesn't break and the we shift it back (subject to change if i find another algo)
+
+		variable format (integers):
+			v-value
+			s-size in bytes
+			.. v s v s | / n o o ..
+
 		issues:
-			variable size limits
-			pointer size limits
+			variable size limits -fix? some sort of base 256 to decimal converter thingy and all calculations amd displayinh will be performed that way
+			pointer size limits -same thing, a base 256 storization*(not sure if right spelling :<) of the pointer offset 
 	function arguments? 
 	if statements?
