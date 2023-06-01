@@ -18,6 +18,8 @@ look into copy.sh websites:
 
 IMPORTANT tools for printing the byte array and a bit of log refining
 
+tool for setting a presey byte array
+
 algo for offsetting pointer by n bytes
 
 default include directories
