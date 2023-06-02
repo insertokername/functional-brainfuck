@@ -4,7 +4,7 @@ all: FBF
 	@echo "\nInstalled brainfuck\n" 
 
 .PHONY: uninstall-local
-uninstall-local:
+remove-local:
 	make clean
 	-rm -f FBF
 	-rm -f FBF.exe
@@ -14,7 +14,7 @@ install-linux: FBF
 	sudo install -m 755 FBF $(INSTALL_DIR)
 	@echo "\nInstalled brainfuck\n"
 
-uninstall-linux:
+remove-linux:
 	make clean
 	-rm -f FBF
 	sudo rm -f $(INSTALL_DIR)

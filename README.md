@@ -47,7 +47,9 @@ output:
 
 ---
 
-**important:**
+## important behaviour:
+
+**spaces are accepted in function definition ( "=do something={body}=" is valid BUT ALSO: "= do else={body=}" and if you try yo call |do else| you will get an error since you didn't put the space before "do" => valid call: "| do else|" )**
 
 **FBF will automatically try to run a function named "main" (THIS ONLY HAPPENS WHEN RUNNING A FILE IT WILL NOT HAPPEN WHEN RUNNING FORM CONSOLE) if its not found it will throw an error ANY GLOBAL CODE WILL BE EXECUTED BEFORE MAIN, EVEN CODE THAT IS UNDER MAIN DEFINITION**
 
@@ -71,7 +73,7 @@ linux(building the project):
 
     sudo make install-linux
 
-then you can just open up a terminal and type "FBF -h"
+then you can just open up a terminal and type "FBF -h" to check install
 
 will be making a windows tutorial in the future...
 
