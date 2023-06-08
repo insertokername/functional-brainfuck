@@ -62,6 +62,7 @@ output:
 ## prerequisites:
 
 linux: git,make,g++
+windows: w64devkit
 
 ## instalation:
 
