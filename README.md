@@ -62,7 +62,8 @@ output:
 ## prerequisites:
 
 linux: git,make,g++
-windows: w64devkit
+
+windows: [w64devkit](https://nuwen.net/mingw.html)
 
 ## instalation:
 

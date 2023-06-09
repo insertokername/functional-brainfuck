@@ -26,6 +26,11 @@ void FBF::interpret_file(const std::string &path, bool in_line) {
 		location = std::string(std::filesystem::current_path().u8string()) + "/" + path;
 	}
 
+	if (input.find("=main=") == std::string::npos) {
+		std::cerr << "Error in file: " << location << std::endl;
+		std::cerr << "\nNo main definition!\n" << std::endl;
+		exit(1);
+	}
 
 	std::string log_file_path = FBF::find_parent(location) + "/file_log.fbf.log";
 	std::ofstream log_file(log_file_path);
@@ -36,7 +41,7 @@ void FBF::interpret_file(const std::string &path, bool in_line) {
 
 	if (function_map["main"] == "") {
 		std::cerr << "Error in file: " << location << std::endl;
-		std::cerr << "\nEmpty or no main definition!\n" << std::endl;
+		std::cerr << "\nEmpty main definition!\n" << std::endl;
 		exit(1);
 	}
 

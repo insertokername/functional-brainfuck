@@ -20,9 +20,18 @@ void FBF::eval_string(const std::string &input
 		switch (input[i]) {
 			case '#': {
 				if (!skipping_loop) {
-					std::string name, body;
-					std::size_t start = i + 1, end;
+					std::string name;
+					std::size_t start = i + 1, end = input.find("#", start);
 
+					if (end == std::string::npos) {
+						std::cerr << "Error in file: " << location << std::endl;
+						std::cerr << "Unclosed include statement!" << std::endl;
+						exit(1);
+					}
+					name = input.substr(start, end - start);
+					i = end;
+
+					/*
 					while ((end = input.find("#", start)) != std::string::npos) {
 						if (name.empty()) {
 							// First occurrence of #
@@ -35,11 +44,11 @@ void FBF::eval_string(const std::string &input
 						}
 						start = end + 1;
 					}
+					*/
 
-					i = end;
-					if (name.empty() || body.empty()) {
+					if (name.empty()) {
 						std::cerr << "Error in file: " << location << std::endl;
-						std::cerr << "Unclosed include statement!" << std::endl;
+						std::cerr << "Empty include statement!" << std::endl;
 						exit(1);
 					}
 
@@ -52,7 +61,7 @@ void FBF::eval_string(const std::string &input
 
 					std::string input_file_text((std::istreambuf_iterator<char>(input_file)),
 						(std::istreambuf_iterator<char>()));
-					FBF::eval_string(input_file_text, pointer, arr, function_map, FBF::find_parent(location) + "/" + name, log_path, std::stoi(body));
+					FBF::eval_string(input_file_text, pointer, arr, function_map, FBF::find_parent(location) + "/" + name, log_path, 0);
 				}
 				break;
 			}
