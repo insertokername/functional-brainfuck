@@ -73,6 +73,7 @@ void FBF::interpret_file(const std::string &path, int flags) {
 	FBF::eval_string(function_map["main"], pointer, arr, function_map, location, log_file_path, flags);
 
 	std::ofstream arr_log_file(FBF::find_parent(location) + "/arr_file_log.fbf.log", std::ios::trunc);
+	arr_log_file << "value: ";
 	for (std::size_t i = 0;i < SIZE;i++) {
 		if (arr[i]) {
 			arr_log_file << (int)(arr[i]) << ' ';
@@ -81,6 +82,7 @@ void FBF::interpret_file(const std::string &path, int flags) {
 
 	arr_log_file << "\n\n";
 
+	arr_log_file << "index: ";
 	for (std::size_t i = 0;i < SIZE;i++) {
 		if (arr[i]) {
 			arr_log_file << i << ' ';
