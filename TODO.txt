@@ -6,6 +6,8 @@ DONE - explain in makefile what inline means
 
 DONE - update readme to exaplin includes and general update
 
+DONE - flag system
+
 install guide for:
 	linux
 	windows

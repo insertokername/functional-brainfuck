@@ -5,12 +5,13 @@
 #include <iostream>
 #include <string>
 #include <filesystem>
-#include "../utils.hpp"
+#include "../flags.hpp"
+#include "../string_utils.hpp"
 #include "../eval/eval_string.hpp"
 
 
 namespace FBF {
-	void interpret_file(const std::string &path, bool in_line);
+	void interpret_file(const std::string &path, int flags);
 }
 
 #endif

@@ -1,8 +1,33 @@
 #include "interpret_file.hpp"
 
-void FBF::interpret_file(const std::string &path, bool in_line) {
+void FBF::interpret_file(const std::string &path, int flags) {
 	constexpr std::size_t SIZE = 30000;
 	std::vector<uint8_t> arr(SIZE);
+
+	if (flags & READ_ARR_FROM_FILE) {
+		std::ifstream in_arr_file("FBF_array.txt");
+		std::string in_arr_line;
+		std::size_t line_number = 0;
+		while (std::getline(in_arr_file, in_arr_line)) {
+			line_number++;
+			std::size_t end = in_arr_line.find(": ");
+			if (end == std::string::npos) {
+				std::cerr << "Didn't find colums on line " << line_number << std::endl;
+				continue;
+			}
+
+			try {
+				std::size_t
+					cell_number = std::stoi(in_arr_line.substr(0, end)),
+					cell_value = std::stoi(in_arr_line.substr(end + 1, in_arr_line.size()));
+				arr[cell_number] = cell_value;
+			}
+			catch (const std::exception &e) {
+				std::cerr << e.what() << '\n';
+			}
+		}
+	}
+
 	std::vector<uint8_t>::iterator pointer = arr.begin();
 	std::unordered_map<std::string, std::string> function_map;
 
@@ -23,7 +48,7 @@ void FBF::interpret_file(const std::string &path, bool in_line) {
 		location = path;
 	}
 	else {
-		location = std::string(std::filesystem::current_path().u8string()) + "/" + path;
+		location = std::string(FBF::make_valid_path(std::filesystem::current_path().u8string())) + "/" + path;
 	}
 
 	if (input.find("=main=") == std::string::npos) {
@@ -37,7 +62,7 @@ void FBF::interpret_file(const std::string &path, bool in_line) {
 	log_file << "";
 	log_file.close();
 
-	FBF::eval_string(input, pointer, arr, function_map, location, log_file_path, in_line);
+	FBF::eval_string(input, pointer, arr, function_map, location, log_file_path, flags);
 
 	if (function_map["main"] == "") {
 		std::cerr << "Error in file: " << location << std::endl;
@@ -45,10 +70,10 @@ void FBF::interpret_file(const std::string &path, bool in_line) {
 		exit(1);
 	}
 
-	FBF::eval_string(function_map["main"], pointer, arr, function_map, location, log_file_path, in_line);
+	FBF::eval_string(function_map["main"], pointer, arr, function_map, location, log_file_path, flags);
 
-	std::ofstream arr_log_file(FBF::find_parent(location) + "/arr_file_log.fbf.log");
-	for (int i = 0;i < SIZE;i++) {
+	std::ofstream arr_log_file(FBF::find_parent(location) + "/arr_file_log.fbf.log", std::ios::trunc);
+	for (std::size_t i = 0;i < SIZE;i++) {
 		if (arr[i]) {
 			arr_log_file << (int)(arr[i]) << ' ';
 		}
@@ -56,7 +81,7 @@ void FBF::interpret_file(const std::string &path, bool in_line) {
 
 	arr_log_file << "\n\n";
 
-	for (int i = 0;i < SIZE;i++) {
+	for (std::size_t i = 0;i < SIZE;i++) {
 		if (arr[i]) {
 			arr_log_file << i << ' ';
 		}

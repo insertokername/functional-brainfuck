@@ -6,7 +6,7 @@ void FBF::eval_string(const std::string &input
 	, std::unordered_map<std::string, std::string> &function_map
 	, const std::string &location
 	, const std::string &log_path
-	, bool in_line
+	, int flags
 ) {
 	std::stack<std::size_t> loop_stack;
 	int16_t skipping_loop = 0;
@@ -15,7 +15,33 @@ void FBF::eval_string(const std::string &input
 
 	for (std::size_t i = 0;i < input.size();i++) {
 		if (!skipping_loop) {
-			FBF::eval_char(input[i], pointer, arr);
+			switch (std::tolower(input[i])) {
+				case '>':
+					pointer++;
+					if (pointer == arr.end()) {
+						pointer = arr.begin();
+					}
+					break;
+				case '<':
+					if (pointer == arr.begin()) {
+						pointer = arr.end();
+					}
+					pointer--;
+					break;
+				case '+':
+					(*pointer)++;
+					break;
+				case '-':
+					(*pointer)--;
+					break;
+				case 'q':
+					exit(0);
+					break;
+				case '.':
+					std::cout << (*pointer);
+					break;
+			}
+			//FBF::eval_char(input[i], pointer, arr);
 		}
 		switch (input[i]) {
 			case '#': {
@@ -83,7 +109,7 @@ void FBF::eval_string(const std::string &input
 						exit(1);
 					}
 
-					FBF::eval_string(function_map[name], pointer, arr, function_map, location, log_path, in_line);
+					FBF::eval_string(function_map[name], pointer, arr, function_map, location, log_path, flags);
 					i = end;
 				}
 				break;
@@ -152,7 +178,7 @@ void FBF::eval_string(const std::string &input
 					break;
 				}
 
-				if (in_line && i + 1 < input.size()) {
+				if ((flags & IS_IN_LINE) && i + 1 < input.size()) {
 					i++;
 					(*pointer) = input[i];
 				}
