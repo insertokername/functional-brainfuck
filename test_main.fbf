@@ -1,6 +1,0 @@
-#stl/IO/read_digit.fbf#
-#stl/raw/move_left.fbf#
-#test_code_files/code.fbf#
-#stl/var/Uselect_var_offset.fbf#
-
-=main= |read_digit| ~ |select_var_offset| > ++ =

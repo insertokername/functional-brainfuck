@@ -8,6 +8,7 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <vector>
 //#include "eval_char.hpp"
 #include "../string_utils.hpp"
 #include "../flags.hpp"
